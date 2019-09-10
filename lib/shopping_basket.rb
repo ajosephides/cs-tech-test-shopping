@@ -10,4 +10,10 @@ class ShoppingBasket
     @items.push(basket_item)
   end
 
+  def add_many_items(items, basket_item = Item)
+    items.each do |item|
+      add_single_item(item, basket_item)
+    end
+  end
+
 end

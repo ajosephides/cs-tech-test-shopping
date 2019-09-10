@@ -13,7 +13,7 @@ describe ShoppingBasket do
     it 'adds an item to the shopping basket' do
       basket = ShoppingBasket.new
       allow(mockItemClass).to receive(:new).with('apple').and_return(mockItem1)
-      basket.add_single_item('apple', mockItemClass)
+      basket.add_item('apple', mockItemClass)
       expect(basket.items.length).to be(1)
     end
   end
@@ -22,7 +22,7 @@ describe ShoppingBasket do
     it 'adds a list of items item to the shopping basket' do
       basket = ShoppingBasket.new
       allow(mockItemClass).to receive(:new).with('apple').and_return(mockItem1, mockItem2, mockItem3)
-      basket.add_many_items(['apple','apple','apple'], mockItemClass)
+      basket.add_item(['apple','apple','apple'], mockItemClass)
       expect(basket.items.length).to be(3)
     end
   end

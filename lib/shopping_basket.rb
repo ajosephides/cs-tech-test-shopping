@@ -5,7 +5,7 @@ class ShoppingBasket
     @items = []
   end
 
-  def add_item(item, basket_item = Item)
+  def add_single_item(item, basket_item = Item)
     basket_item = basket_item.new(item)
     @items.push(basket_item)
   end

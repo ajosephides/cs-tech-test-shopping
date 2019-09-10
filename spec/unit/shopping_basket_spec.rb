@@ -26,4 +26,20 @@ describe ShoppingBasket do
       expect(basket.items.length).to be(3)
     end
   end
+
+  describe '#price' do
+    it 'calculates the price of a basket without offers' do
+      basket = ShoppingBasket.new
+      allow(mockItemClass).to receive(:new).with('apple').and_return(mockItem1)
+      allow(mockItemClass).to receive(:new).with('banana').and_return(mockItem2)
+      allow(mockItemClass).to receive(:new).with('melon').and_return(mockItem3)
+      allow(mockItem1).to receive(:price).and_return(35)
+      allow(mockItem2).to receive(:price).and_return(20)
+      allow(mockItem3).to receive(:price).and_return(50)
+      basket.add_item(['apple','banana','melon'], mockItemClass)
+      expect(basket.price).to be(105)
+    end
+  end
+
+
 end

@@ -40,6 +40,16 @@ describe SpecialOffer do
       expect(discount.discount).to eq(100)
     end
 
+    it 'calculates a discount for 3 limes' do
+      allow(mockItem1).to receive(:item).and_return('apple')
+      allow(mockItem2).to receive(:item).and_return('banana')
+      allow(mockItem3).to receive(:item).and_return('melon')
+      allow(mockItem4).to receive(:item).and_return('lime')
+      lime_discount_basket = [mockItem4, mockItem4, mockItem1, mockItem1, mockItem4, mockItem3]
+      discount = SpecialOffer.new(lime_discount_basket)
+      expect(discount.discount).to eq(15)
+    end
+
 
   end
 

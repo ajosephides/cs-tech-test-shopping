@@ -39,5 +39,5 @@ Please note that all prices are in pence
   * `basket.add_item(['apple', 'melon', 'lime','lime','lime','apple','melon','banana'])`
   * `basket.price`
 
-![example](INSERTLINKTOIMAGEHERE)
+![example](https://github.com/ajosephides/cs-tech-test-shopping/blob/master/public/basket_example.png)
 

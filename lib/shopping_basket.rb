@@ -9,8 +9,10 @@ class ShoppingBasket
     item.class == Array ? add_many_items(item, basket_item) : add_single_item(item, basket_item)
   end
 
-  def price
-    return @items.reduce(0) { |total, item| total + item.price }
+  def price(special_offer = SpecialOffer)
+    price_no_discount = @items.reduce(0) { |total, item| total + item.price }
+    special_offer = special_offer.new(@items)
+    return price_no_discount - special_offer.discount
   end
 
 

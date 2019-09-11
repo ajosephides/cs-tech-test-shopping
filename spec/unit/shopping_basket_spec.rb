@@ -7,6 +7,9 @@ describe ShoppingBasket do
   let(:mockItem1) { double :Item}
   let(:mockItem2) { double :Item}
   let(:mockItem3) { double :Item}
+  let(:mockDiscount) { double :SpecialOffer}
+  let(:specialOfferClass) { double :SpecialOfferClass}
+
 
 
   describe '#add_single_item' do
@@ -33,11 +36,27 @@ describe ShoppingBasket do
       allow(mockItemClass).to receive(:new).with('apple').and_return(mockItem1)
       allow(mockItemClass).to receive(:new).with('banana').and_return(mockItem2)
       allow(mockItemClass).to receive(:new).with('melon').and_return(mockItem3)
+      allow(specialOfferClass).to receive(:new).and_return(mockDiscount)
       allow(mockItem1).to receive(:price).and_return(35)
       allow(mockItem2).to receive(:price).and_return(20)
       allow(mockItem3).to receive(:price).and_return(50)
+      allow(mockDiscount).to receive(:discount).and_return(0)
       basket.add_item(['apple','banana','melon'], mockItemClass)
-      expect(basket.price).to be(105)
+      expect(basket.price(specialOfferClass)).to be(105)
+    end
+
+    it 'calculates the price of a basket with 2 melon offer' do
+      basket = ShoppingBasket.new
+      allow(mockItemClass).to receive(:new).with('apple').and_return(mockItem1)
+      allow(mockItemClass).to receive(:new).with('banana').and_return(mockItem2)
+      allow(mockItemClass).to receive(:new).with('melon').and_return(mockItem3)
+      allow(specialOfferClass).to receive(:new).and_return(mockDiscount)
+      allow(mockItem1).to receive(:price).and_return(35)
+      allow(mockItem2).to receive(:price).and_return(20)
+      allow(mockItem3).to receive(:price).and_return(50)
+      allow(mockDiscount).to receive(:discount).and_return(50)
+      basket.add_item(['apple','banana','melon', 'melon'], mockItemClass)
+      expect(basket.price(specialOfferClass)).to be(105)
     end
   end
 

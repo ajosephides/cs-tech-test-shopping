@@ -1,7 +1,7 @@
 class Item
 
-  attr_reader :price
-  
+  attr_reader :price, :item
+
   PRICE_LIST = {:apple => 35, :banana => 20, :melon => 50, :lime => 15 }
 
   def initialize(item)

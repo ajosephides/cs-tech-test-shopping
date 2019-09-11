@@ -1,3 +1,6 @@
+require_relative './item.rb'
+require_relative './special_offer.rb'
+
 class ShoppingBasket
   attr_reader :items
 
@@ -10,6 +13,7 @@ class ShoppingBasket
   end
 
   def price(special_offer = SpecialOffer)
+    @items
     price_no_discount = @items.reduce(0) { |total, item| total + item.price }
     special_offer = special_offer.new(@items)
     return price_no_discount - special_offer.discount

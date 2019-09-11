@@ -12,7 +12,9 @@ class SpecialOffer
   def discount
     discount = 0
     BUY_X_GET_1.keys.each do |offer|
+      if @basket_by_type.key?(offer)
         discount = discount + ((@basket_by_type[offer] / BUY_X_GET_1[offer]) * PRICE_LIST[offer])
+      end
     end
     return discount
   end
